@@ -1,14 +1,21 @@
-import koa from 'koa';
+import Koa, { ParameterizedContext } from 'koa';
 import bodyParser from 'koa-bodyparser';
 import { assetsRouter } from './routes/asset.router';
+import { db } from './db';
+import koaRouter from 'koa-router';
 
-const app = new koa();
-const port = 3000;
+const app: Koa = new Koa();
+const port: number = 3000;
+const mongoDb: string = 'mongodb://localhost:27017/foo';
 
+// Connect to mongo.
+db.connect(mongoDb);
+
+// Body parser.
 app.use(bodyParser());
 
-// Handle error, and response time.
-app.use(async (ctx, next) => {
+// Handle errors, and response time.
+app.use(async (ctx: ParameterizedContext<any, koaRouter.IRouterParamContext<any, {}>, any>, next: Koa.Next) => {
     const start = Date.now();
     try {
         await next();
@@ -24,7 +31,10 @@ app.use(async (ctx, next) => {
 });
 
 // Log errors.
-app.on('error', (err, ctx) => {
+app.on('error', (err, ctx: ParameterizedContext<any, koaRouter.IRouterParamContext<any, {}>, any>) => {
+    console.error(err);
+    // Dumb down internal servers..
+    ctx.response.body = 'wooops something went wrong..';
     /* centralized error handling:
      *   console.log error
      *   write error to log file
