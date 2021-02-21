@@ -25,7 +25,7 @@ async function asset_create(ctx: ParameterizedContext<IAsset, koaRouter.IRouterP
     asset.dateCreated = new Date();
     await asset.save()
         .then(async (result: IAssetEntity) => {
-            ctx.response.body = result.id;
+            ctx.response.body = { id: result.id };
             await next();
         });
 }

@@ -20,8 +20,7 @@ export class AssetsDialogComponent implements OnInit {
     }
 
     submit(data: IAsset): void {
-        console.log(data);
-        this.dialogRef.close();
+        this.dialogRef.close(data);
     }
 
     ngOnInit(): void {
