@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Add new asset</h1>
+<div mat-dialog-content>
+    <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="data.name" cdkFocusInitial>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>IP address</mat-label>
+        <input matInput [(ngModel)]="data.ip">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <input matInput [(ngModel)]="data.description">
+    </mat-form-field>
+</div>
+<div mat-dialog-actions style="justify-content: center;">
+    <button mat-button (click)="close()">Cancel</button>
+    <button mat-button (click)="submit(data)">Ok</button>
+</div>

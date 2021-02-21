@@ -1,1 +1,26 @@
-<p>assets works!</p>
+<mat-grid-list cols="11" rowHeight="4rem">
+    <mat-grid-tile [colspan]="1" [rowspan]="2">
+        <button mat-flat-button color="primary" (click)="openDialog()">Add</button>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="9" [rowspan]="2">
+        <h1>Assests</h1>
+    </mat-grid-tile>
+</mat-grid-list>
+
+<mat-grid-list cols="6" rowHeight="4rem">
+    <mat-grid-tile *ngFor="let asset of assets" [colspan]="1" [rowspan]="2">
+
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>{{asset.name}}</mat-card-title>
+                <mat-card-subtitle>{{asset.dateCreated}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content style="margin-left: 1rem;">
+                <p>
+                    {{asset.description}}
+                </p>
+            </mat-card-content>
+        </mat-card>
+
+    </mat-grid-tile>
+</mat-grid-list>
