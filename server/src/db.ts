@@ -14,4 +14,10 @@ export class db {
             console.info(`Successfully connected to ${address}`);
         });
     }
+
+    static disconnect() {
+        mongoose.disconnect().then(() => {
+            console.log('Disconnected successfully');
+        });
+    }
 }

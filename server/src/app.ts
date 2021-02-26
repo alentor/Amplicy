@@ -43,10 +43,14 @@ app.on('error', (err, ctx: ParameterizedContext<any, koaRouter.IRouterParamConte
     */
 });
 
+// On close.
+app.on('close', () => {
+    db.disconnect();
+});
+
 // Routes.
 app.use(assetsRouter.routes());
 
-// Server.
 app.listen(port, () => {
     return console.log(`server is listening on ${port}`);
 });
